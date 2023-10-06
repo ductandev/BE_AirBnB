@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model BinhLuan {
+  binh_luan_id   Int        @id @default(autoincrement())
+  phong_id       Int?
+  nguoi_dung_id  Int?
+  ngay_binh_luan DateTime?  @db.DateTime(0)
+  noi_dung       String?    @db.VarChar(255)
+  sao_binh_luan  Int?
+  iDelete        Boolean?   @default(false)
+  Phong          Phong?     @relation(fields: [phong_id], references: [phong_id], onDelete: NoAction, onUpdate: NoAction, map: "BinhLuan_ibfk_1")
+  NguoiDung      NguoiDung? @relation(fields: [nguoi_dung_id], references: [nguoi_dung_id], onDelete: NoAction, onUpdate: NoAction, map: "BinhLuan_ibfk_2")
+
+  @@index([nguoi_dung_id], map: "nguoi_dung_id")
+  @@index([phong_id], map: "phong_id")
+}
+
+model DatPhong {
+  dat_phong_id   Int        @id @default(autoincrement())
+  phong_id       Int?
+  nguoi_dung_id  Int?
+  ngay_den       DateTime?  @db.DateTime(0)
+  ngay_di        DateTime?  @db.DateTime(0)
+  so_luong_khach Int?
+  iDelete        Boolean?   @default(false)
+  Phong          Phong?     @relation(fields: [phong_id], references: [phong_id], onDelete: NoAction, onUpdate: NoAction, map: "DatPhong_ibfk_1")
+  NguoiDung      NguoiDung? @relation(fields: [nguoi_dung_id], references: [nguoi_dung_id], onDelete: NoAction, onUpdate: NoAction, map: "DatPhong_ibfk_2")
+
+  @@index([nguoi_dung_id], map: "nguoi_dung_id")
+  @@index([phong_id], map: "phong_id")
+}
+
+model NguoiDung {
+  nguoi_dung_id Int        @id @default(autoincrement())
+  vai_tro_id    Int?       @default(2)
+  ho_ten        String     @db.VarChar(100)
+  email         String     @db.VarChar(200)
+  mat_khau      String     @db.VarChar(255)
+  so_dien_thoai String?    @db.VarChar(50)
+  ngay_sinh     String?    @db.VarChar(50)
+  anh_dai_dien  String?    @db.VarChar(255)
+  gioi_tinh     String?    @db.VarChar(20)
+  tuoi          Int?
+  isDelete      Boolean?   @default(false)
+  BinhLuan      BinhLuan[]
+  DatPhong      DatPhong[]
+  VaiTro        VaiTro?    @relation(fields: [vai_tro_id], references: [vai_tro_id], onDelete: NoAction, onUpdate: NoAction, map: "NguoiDung_ibfk_1")
+
+  @@index([vai_tro_id], map: "vai_tro_id")
+}
+
+model Nhom {
+  vai_tro_id Int
+  quyen_id   Int
+  VaiTro     VaiTro @relation(fields: [vai_tro_id], references: [vai_tro_id], onDelete: NoAction, onUpdate: NoAction, map: "Nhom_ibfk_1")
+  Quyen      Quyen  @relation(fields: [quyen_id], references: [quyen_id], onDelete: NoAction, onUpdate: NoAction, map: "Nhom_ibfk_2")
+
+  @@id([vai_tro_id, quyen_id])
+  @@index([quyen_id], map: "quyen_id")
+}
+
+model Phong {
+  phong_id  Int        @id @default(autoincrement())
+  vi_tri_id Int?
+  ten_phong String?    @db.VarChar(255)
+  phong_ngu Int?
+  giuong    Int?
+  phong_tam Int?
+  mo_ta     String?    @db.VarChar(255)
+  gia_tien  Int?
+  may_giat  Boolean?
+  ban_la    Boolean?
+  tivi      Boolean?
+  dieu_hoa  Boolean?
+  wifi      Boolean?
+  bep       Boolean?
+  do_xe     Boolean?
+  ho_boi    Boolean?
+  ban_ui    Boolean?
+  hinh_anh  String?    @db.VarChar(255)
+  iDelete   Boolean?   @default(false)
+  BinhLuan  BinhLuan[]
+  DatPhong  DatPhong[]
+  ViTri     ViTri?     @relation(fields: [vi_tri_id], references: [vi_tri_id], onDelete: NoAction, onUpdate: NoAction, map: "Phong_ibfk_1")
+
+  @@index([vi_tri_id], map: "vi_tri_id")
+}
+
+model Quyen {
+  quyen_id        Int     @id @default(autoincrement())
+  quyen_tai_khoan String? @db.VarChar(50)
+  Nhom            Nhom[]
+}
+
+model VaiTro {
+  vai_tro_id        Int         @id @default(autoincrement())
+  vai_tro_tai_khoan String?     @db.VarChar(50)
+  NguoiDung         NguoiDung[]
+  Nhom              Nhom[]
+}
+
+model ViTri {
+  vi_tri_id  Int      @id @default(autoincrement())
+  ten_vi_tri String?  @db.VarChar(200)
+  tinh_thanh String?  @db.VarChar(150)
+  quoc_gia   String?  @db.VarChar(150)
+  hinh_anh   String?  @db.VarChar(255)
+  iDelete    Boolean? @default(false)
+  Phong      Phong[]
+}
