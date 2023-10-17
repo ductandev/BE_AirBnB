@@ -1,10 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger"
 
-export class UserSignUpType {
-    // @ApiProperty()
-    nguoi_dung_id: number
-    // @ApiProperty()
-    vai_tro_id: number
+export class UserUpdateDto {
     @ApiProperty()
     ho_ten:string
     @ApiProperty()
@@ -16,11 +12,7 @@ export class UserSignUpType {
     @ApiProperty()
     ngay_sinh:string
     @ApiProperty()
-    anh_dai_dien:string
-    @ApiProperty()
     gioi_tinh:string
     @ApiProperty()
     tuoi: number
-    // @ApiProperty()
-    isDelete: boolean
 }

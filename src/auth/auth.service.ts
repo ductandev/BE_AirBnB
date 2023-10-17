@@ -33,8 +33,8 @@ export class AuthService {
         // check password
         let checkPass = bcrypt.compareSync(mat_khau, checkEmail.mat_khau);    //: tham số 1: dữ liệu chưa mã hóa, tham số 2: dữ liệu đã mã hóa
         if (checkPass == true) {
-          // ⭐ để 30h cho mentor dễ chấm bài⭐
-          let token = this.jwtService.sign({ data: checkEmail }, { expiresIn: '30h', secret: 'NODE' },); // Khóa bí mật bên files "jwt.strategy.ts"
+          // ⭐ để 30d cho mentor dễ chấm bài⭐
+          let token = this.jwtService.sign({ data: checkEmail }, { expiresIn: '30d', secret: 'NODE' },); // Khóa bí mật bên files "jwt.strategy.ts"
           successCode(res, token, 200, 'Login thành công !');
         } else {
           failCode(res, '', 400, 'Mật khẩu không đúng !');
@@ -48,12 +48,13 @@ export class AuthService {
     }
   }
 
+  
   // =============================================
   //                  ĐĂNG KÝ
   // =============================================
   async signUp(body: UserSignUpType, res: Response) {
     try {
-      let { email, mat_khau, ho_ten, tuoi, anh_dai_dien } = body;
+      let { ho_ten, email, mat_khau, so_dien_thoai, ngay_sinh, anh_dai_dien, gioi_tinh, tuoi } = body;
 
       let checkEmail = await this.model.nguoiDung.findFirst({
         where: {
@@ -67,11 +68,14 @@ export class AuthService {
 
       // mã hóa mật khẩu
       let newData = {
+        ho_ten,
         email,
         mat_khau: await bcrypt.hash(mat_khau, 10), //  thay đổi bcrypt.hashSync thành await bcrypt.hash để sử dụng hàm hash bất đồng bộ. Điều này cần thiết để tránh blocking thread chính khi mã hóa mật khẩu.
-        ho_ten,
-        tuoi,
+        so_dien_thoai,
+        ngay_sinh,
         anh_dai_dien,
+        gioi_tinh,
+        tuoi
       };
 
       await this.model.nguoiDung.create({
@@ -80,7 +84,7 @@ export class AuthService {
 
       successCode(res, newData, 201, 'Thêm mới thành công !');
     } catch (exception) {
-      console.log("🚀 ~ file: auth.service.ts:83 ~ AuthService ~ signUp ~ exception:", exception)
+      console.log("🚀 ~ file: auth.service.ts:87 ~ AuthService ~ signUp ~ exception:", exception)
       errorCode(res, 'Lỗi BE');
       // errorCode(res, `Lỗi BE: ${exception}`);
     }
