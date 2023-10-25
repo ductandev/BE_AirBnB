@@ -1,0 +1,1277 @@
+{
+	"info": {
+		"_postman_id": "6943a81b-48d4-4f2b-afc1-ede3a1a5e896",
+		"name": "Capstone AirBnb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18888957",
+		"_collection_link": "https://orange-escape-954273.postman.co/workspace/Danh-sach-api-sinh-vi%C3%AAn~cf4d8bb9-5b91-4201-a04d-7e494ec35777/collection/18888957-6943a81b-48d4-4f2b-afc1-ede3a1a5e896?action=share&source=collection_link&creator=18888957"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "1 / Đăng Ký",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"ho_ten\": \"Nguyễn Đức Tấn\",\r\n    \"email\": \"ductan@gmail.com\",\r\n    \"mat_khau\": \"1234\",\r\n    \"so_dien_thoai\": \"0123456789\",\r\n    \"ngay_sinh\": \"1999-06-15\",\r\n    \"anh_dai_dien\": \"ductan.png\",\r\n    \"gioi_tinh\": \"nam\",\r\n    \"tuoi\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/auth/signup",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 / Đăng nhập",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@example.com\",\r\n    \"mat_khau\": \"1234\"\r\n}\r\n// {\r\n//     \"email\": \"ductan@gmail.com\",\r\n//     \"mat_khau\": \"1234\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/auth/signin",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản Lý Người Dùng  - [NguoiDung]",
+			"item": [
+				{
+					"name": "3 / Lấy thông tin chi tiết tất cả người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk3OTg1NzQwLCJleHAiOjE3MDA1Nzc3NDB9.ztW7Iy2Nr03vKJ1BGpo7_F9-wM47V_zssFHlb1wjvXI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/user/get-info-all-user",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get-info-all-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 / Lấy thông tin chi tiết người dùng_id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/user/get-info-user-by-user-id/10",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get-info-user-by-user-id",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5 / Lấy danh sách người dùng phân trang",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/user/get-list-user-panigation/1/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"get-list-user-panigation",
+								"1",
+								"3"
+							]
+						},
+						"description": "API lấy danh sách phân trang người dùng"
+					},
+					"response": []
+				},
+				{
+					"name": "6 / Tìm nên người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/user/search-user-by-name/tan",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"search-user-by-name",
+								"tan"
+							]
+						},
+						"description": "API lấy danh sách phân trang người dùng"
+					},
+					"response": []
+				},
+				{
+					"name": "7 / Cập nhật ảnh đại diện người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzE2OTQwOCwiZXhwIjoxNjk5NzYxNDA4fQ.num9dr4mB3Sc9ra7FLPBFLAjfgSKM_MEmPOetkxr3KQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "ductan@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/C:/Users/Admin/Downloads/gym.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/upload-avatar/11",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"upload-avatar",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8 / Cập nhật người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ho_ten\": \"Đức Tấn\",\r\n  \"email\": \"ductan12345@gmail.com\",\r\n  \"mat_khau\": \"1234\",\r\n  \"so_dien_thoai\": \"0987654321\",\r\n  \"ngay_sinh\": \"1999-06-15\",\r\n  \"gioi_tinh\": \"nam\",\r\n  \"tuoi\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/user/update-user/10",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"update-user",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9 / Xóa người dùng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk3OTg1NzQwLCJleHAiOjE3MDA1Nzc3NDB9.ztW7Iy2Nr03vKJ1BGpo7_F9-wM47V_zssFHlb1wjvXI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/user/delete-user/11",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"delete-user",
+								"11"
+							]
+						},
+						"description": "API xóa người dùng theo id"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản Lý Bình Luận - [BinhLuan]",
+			"item": [
+				{
+					"name": "10 / Lấy thông tin tất cả bình luận",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-comment",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11 / Lấy thông tin bình luận by user_id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-comment-by-user-id/11",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-comment-by-user-id",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12 / Lấy thông tin bình luận by room_id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-comment-by-room-id/8",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-comment-by-room-id",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13 / Bình luận phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phong_id\": 19,\r\n  \"nguoi_dung_id\": 11,\r\n  \"ngay_binh_luan\": \"2023-10-13T09:54:57.271Z\",\r\n  \"noi_dung\": \"Phòng đẹp\",\r\n  \"sao_binh_luan\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/post-comment",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"post-comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14 / Sửa bình luận phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phong_id\": 19,\r\n  \"nguoi_dung_id\": 11,\r\n  \"ngay_binh_luan\": \"2023-10-13T11:12:23.960Z\",\r\n  \"noi_dung\": \"Phòng đẹp có hồ bơi !\",\r\n  \"sao_binh_luan\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/put-comment/9",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"put-comment",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15 / Xóa bình luận phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/delete-comment/10",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"delete-comment",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản Lý Đặt Phòng - [DatPhong]",
+			"item": [
+				{
+					"name": "16 / Lấy thông tin đặt phòng tất cả",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-info-book-room",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-info-book-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17 / Lấy thông tin đặt phòng theo người dùng ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-info-book-room-by-user-id/8",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-info-book-room-by-user-id",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18 / Lấy thông tin đặt phòng theo phòng ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-info-book-room-by-room-id/8",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-info-book-room-by-room-id",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19 / Đặt phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phong_id\": 11,\r\n  \"nguoi_dung_id\": 11,\r\n  \"ngay_den\": \"2023-12-20T15:00:00Z\",\r\n  \"ngay_di\": \"2023-12-25T15:00:00Z\",\r\n  \"so_luong_khach\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/post-book-room",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"post-book-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20 / Sửa thông tin đặt phòng ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phong_id\": 11,\r\n  \"nguoi_dung_id\": 11,\r\n  \"ngay_den\": \"2023-12-20T15:00:00Z\",\r\n  \"ngay_di\": \"2023-12-25T15:00:00Z\",\r\n  \"so_luong_khach\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/put-book-room/9",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"put-book-room",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "21 / Xóa đặt phòng by bookRoom_ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phong_id\": 11,\r\n  \"nguoi_dung_id\": 10,\r\n  \"ngay_den\": \"2023-12-20T15:00:00Z\",\r\n  \"ngay_di\": \"2023-12-25T15:00:00Z\",\r\n  \"so_luong_khach\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/delete-book-room/10",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"delete-book-room",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản Lý Phòng - [Phong]",
+			"item": [
+				{
+					"name": "22 / Lấy thông tin tất cả các phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-room",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "23 / Lấy thông tin cho tiết phòng ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-room-by-id/10",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-room-by-id",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "24 / Lấy thông tin danh sách phòng theo vị trí ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-list-room-by-location-id/2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-list-room-by-location-id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "25 / Lấy thông tin danh sách phòng phân trang",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-panigation-room/2/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-panigation-room",
+								"2",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26 / Tạo thêm phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vi_tri_id\": 2,\r\n  \"ten_phong\": \"Phòng view landmark 81 sang chảnh\",\r\n  \"phong_ngu\": 3,\r\n  \"giuong\": 2,\r\n  \"phong_tam\": 2,\r\n  \"mo_ta\": \"Phòng có đầy đủ tất cả các tiện nghi !!!\",\r\n  \"gia_tien\": 90,\r\n  \"may_giat\": true,\r\n  \"ban_la\": true,\r\n  \"tivi\": true,\r\n  \"dieu_hoa\": true,\r\n  \"wifi\": true,\r\n  \"bep\": true,\r\n  \"do_xe\": true,\r\n  \"ho_boi\": true,\r\n  \"ban_ui\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/post-room",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"post-room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "27 / Thêm ảnh phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/C:/Users/Admin/Downloads/gym.jpg"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/E:/7979.png"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/E:/16868.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/api/upload-img-room/23",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"upload-img-room",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "28 / Chỉnh sửa phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vi_tri_id\": 2,\r\n  \"ten_phong\": \"Phòng View biển\",\r\n  \"phong_ngu\": 3,\r\n  \"giuong\": 3,\r\n  \"phong_tam\": 3,\r\n  \"mo_ta\": \"Phòng có đầy đủ tất cả các tiện nghi !!!\",\r\n  \"gia_tien\": 90,\r\n  \"may_giat\": true,\r\n  \"ban_la\": true,\r\n  \"tivi\": true,\r\n  \"dieu_hoa\": true,\r\n  \"wifi\": true,\r\n  \"bep\": true,\r\n  \"do_xe\": true,\r\n  \"ho_boi\": true,\r\n  \"ban_ui\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/put-room/22",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"put-room",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "29 / Xóa phòng",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vi_tri_id\": 2,\r\n  \"ten_phong\": \"Phòng đôi 5 sao\",\r\n  \"phong_ngu\": 2,\r\n  \"giuong\": 2,\r\n  \"phong_tam\": 2,\r\n  \"mo_ta\": \"Phòng có đầy đủ tất cả các tiện nghi !!!\",\r\n  \"gia_tien\": 90,\r\n  \"may_giat\": true,\r\n  \"ban_la\": true,\r\n  \"tivi\": true,\r\n  \"dieu_hoa\": true,\r\n  \"wifi\": true,\r\n  \"bep\": true,\r\n  \"do_xe\": true,\r\n  \"ho_boi\": true,\r\n  \"ban_ui\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/delete-room/22",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"delete-room",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản Lý Vị Trí - [ViTri]",
+			"item": [
+				{
+					"name": "30 / Lấy danh sách tất cả các vị trí",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-all-location",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-all-location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "31 / Lấy chi tiết vị trí by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-loation-by-id/2",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-loation-by-id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "32 / Lấy danh sách vị trí phân trang",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjMsInZhaV90cm9faWQiOjIsImhvX3RlbiI6IlVzZXIgMSIsImVtYWlsIjoidXNlcjFAZXhhbXBsZS5jb20iLCJtYXRfa2hhdSI6IiQyYiQxMCRPbWo5ZWhxdzVYS1l3SVlZb29jcC9lTXJPQVRCNnFCbGJkalV5OS9ERzk5bkhtdEVjMkZLUyIsInNvX2RpZW5fdGhvYWkiOiI5ODc2NTQzMjEiLCJuZ2F5X3NpbmgiOiIxOTk1LTA1LTE1IiwiYW5oX2RhaV9kaWVuIjoidXNlcjEuanBnIiwiZ2lvaV90aW5oIjoiTuG7ryIsInR1b2kiOjI4LCJpc0RlbGV0ZSI6dHJ1ZX0sImlhdCI6MTY5NzAzMzkxOSwiZXhwIjoxNjk5NjI1OTE5fQ.rC_aoohL1lK7Zwck1Oz0sKte4PmVVvxdV16y6crj6u0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/api/get-panigation-location/1/3",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"get-panigation-location",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "33 / Tạo vị trí",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ten_vi_tri\": \"Hồ Chí Minh\",\r\n  \"tinh_thanh\": \"Quận Tân Phú\",\r\n  \"quoc_gia\": \"Việt Nam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/post-location",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"post-location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "34 / Thêm ảnh vị trí",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/E:/7979.png"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/E:/16868.png"
+								},
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "/E:/cotienmuamacbook.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/api/upload-img-location/20",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"upload-img-location",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "35 / Chỉnh sửa vị trí",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ten_vi_tri\": \"Hồ Chí Minh 1\",\r\n  \"tinh_thanh\": \"Quận Tân Bình 1\",\r\n  \"quoc_gia\": \"Việt Nam 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/put-location/20",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"put-location",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "36 / Xóa vị trí",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pX2R1bmdfaWQiOjEsInZhaV90cm9faWQiOjEsImhvX3RlbiI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsIm1hdF9raGF1IjoiJDJiJDEwJE5zakRyRkF0L0pGcXVteGlNNFc2S2V5akF4QWVhczc3WjBPQTRBdEdZYWp5UUNGcHo5T051Iiwic29fZGllbl90aG9haSI6IjEyMzQ1Njc4OSIsIm5nYXlfc2luaCI6IjE5OTAtMDEtMDEiLCJhbmhfZGFpX2RpZW4iOiJhZG1pbi5qcGciLCJnaW9pX3RpbmgiOiJOYW0iLCJ0dW9pIjozMywiaXNEZWxldGUiOmZhbHNlfSwiaWF0IjoxNjk4MTQyMjA2LCJleHAiOjE3MDA3MzQyMDZ9.9EtG35dLnN8ldqyPbeg2ycusrli-WseTdRc_AcbAHyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"vi_tri_id\": 2,\r\n  \"ten_phong\": \"Phòng đôi 5 sao\",\r\n  \"phong_ngu\": 2,\r\n  \"giuong\": 2,\r\n  \"phong_tam\": 2,\r\n  \"mo_ta\": \"Phòng có đầy đủ tất cả các tiện nghi !!!\",\r\n  \"gia_tien\": 90,\r\n  \"may_giat\": true,\r\n  \"ban_la\": true,\r\n  \"tivi\": true,\r\n  \"dieu_hoa\": true,\r\n  \"wifi\": true,\r\n  \"bep\": true,\r\n  \"do_xe\": true,\r\n  \"ho_boi\": true,\r\n  \"ban_ui\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/api/delete-location/20",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"delete-location",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
