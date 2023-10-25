@@ -1127,6 +1127,15 @@
     "@types/jsonwebtoken" "*"
     "@types/passport-strategy" "*"
 
+"@types/passport-local@^1.0.37":
+  version "1.0.37"
+  resolved "https://registry.npmjs.org/@types/passport-local/-/passport-local-1.0.37.tgz#97f6a60873b551f08c3a251043eb1662ecc546f7"
+  integrity sha512-c57CwMHhMP2BBiOLyQZGRP43F8JtC84H976YVJdiU4EIWvqRCZ3F7QtsEgksOEIgMOk1Kz3EEKGA93OiDPQtRQ==
+  dependencies:
+    "@types/express" "*"
+    "@types/passport" "*"
+    "@types/passport-strategy" "*"
+
 "@types/passport-strategy@*":
   version "0.2.36"
   resolved "https://registry.npmjs.org/@types/passport-strategy/-/passport-strategy-0.2.36.tgz#aaf10153baf4560fa035456c45cc2b9d8c973584"

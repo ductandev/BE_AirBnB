@@ -1,16 +1,24 @@
-import { Controller, Get, Post, Body, Param, Delete, HttpCode, Res, UseGuards, Put, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, HttpCode, Res, UseGuards, Put, UseInterceptors, UploadedFile, SetMetadata } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
-import { UserUpdateDto } from './dto/update-user.dto';
 import { diskStorage } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
+
+import { UserUpdateDto } from './dto/update-user.dto';
 import { FileUploadDto } from './dto/upload.dto';
 
+import { Role } from './entities/role.enum';
+import { Roles } from '../decorators/roles.decorator';
 
-@ApiBearerAuth()              // Hiện ổ khóa trên swagger
-@UseGuards(AuthGuard("jwt"))
-@ApiTags("NguoiDung")         // Gom nhóm API Swagger
+import { AuthenticationGuard } from 'src/guards/authentication.guard';
+import { AuthorizationGuard } from 'src/guards/authorization.guard';
+
+
+@ApiBearerAuth()      
+// @UseGuards(AuthGuard("jwt"))
+@UseGuards(AuthenticationGuard, AuthorizationGuard)
+@ApiTags("NguoiDung")
 @Controller('api/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -20,6 +28,7 @@ export class UserController {
   // LẤY THÔNG TIN CHI TIẾT TẤT CẢ NGƯỜI DÙNG
   // ============================================
   @HttpCode(200)
+  @Roles(Role.ADMIN)
   @Get("get-info-all-user")
   getInforAllUser(@Res() res: Response) {
     return this.userService.getInforAllUser(res)
@@ -29,6 +38,7 @@ export class UserController {
   // LẤY THÔNG TIN CHI TIẾT NGƯỜI DÙNG BY USER_ID
   // ============================================
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Get("get-info-user-by-user-id/:userId")
   getInfoUserByUserId(@Param("userId") userId: string, @Res() res: Response) {
     return this.userService.getInfoUserByUserId(userId, res)
@@ -38,6 +48,7 @@ export class UserController {
   //    LẤY DANH SÁCH NGƯỜI DÙNG PHÂN TRANG
   // ============================================
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Get("get-list-user-panigation/:pageIndex/:pageSize")
   getListUserPanigation(
     @Param("pageIndex") pageIndex: number, 
@@ -51,6 +62,7 @@ export class UserController {
   //        TÌM TÊN NGƯỜI DÙNG THEO TÊN
   // ============================================ 
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Get("search-user-by-name/:userName")
   searchUserByName(@Param("userName") userName: string, @Res() res: Response){
     return this.userService.searchUserByName(userName, res)
@@ -62,6 +74,7 @@ export class UserController {
   // ============================================
   @ApiConsumes('multipart/form-data')
   // @ApiBody({ type: FileUploadDto })
+  @Roles(Role.ADMIN, Role.USER)
   @HttpCode(201)
   @Post("upload-avatar/:userID")
   @UseInterceptors(FileInterceptor("hinhAnh",     // Tham số 1: key FE gửi lên
@@ -86,6 +99,7 @@ export class UserController {
   //             CẬP NHẬT NGƯỜI DÙNG 
   // ============================================  
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Put("update-user/:userId")
   updateUserById(@Param("userId") userId: string, @Body() body: UserUpdateDto, @Res() res: Response){
     return this.userService.updateUserById(userId, body, res)
@@ -95,6 +109,7 @@ export class UserController {
   //               XÓA NGƯỜI DÙNG 
   // ============================================  
   @HttpCode(200)
+  @Roles(Role.ADMIN)
   @Delete("delete-user/:userId")
   deleteUserById(@Param("userId") userId: string, @Res() res: Response){
     return this.userService.deleteUserById(userId, res)

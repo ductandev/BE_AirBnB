@@ -9,9 +9,16 @@ import { diskStorage } from 'multer';
 import { FileUploadDto } from 'src/room/dto/upload.dto';
 import { CreateLocationDto } from './dto/create-location.dto';
 
+import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from 'src/user/entities/role.enum';
+
+import { AuthenticationGuard } from 'src/guards/authentication.guard';
+import { AuthorizationGuard } from 'src/guards/authorization.guard';
+
 
 @ApiBearerAuth()
-@UseGuards(AuthGuard("jwt"))
+// @UseGuards(AuthGuard("jwt"))
+@UseGuards(AuthenticationGuard, AuthorizationGuard)
 @ApiTags("ViTri")
 @Controller('api/')
 export class LocationController {
@@ -21,6 +28,7 @@ export class LocationController {
   //            GET ALL LOCATION
   // ============================================ 
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Get("get-all-location")
   getAllLocation(@Res() res: Response) {
     return this.locationService.getAllLocation(res)
@@ -30,6 +38,7 @@ export class LocationController {
   //         GET LOCATION DETAIL BY ID
   // ============================================
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Get("get-loation-by-id/:locationID")
   getLocationById(@Param("locationID") locationID: number, @Res() res: Response) {
     return this.locationService.getLocationById(locationID, res)
@@ -39,6 +48,7 @@ export class LocationController {
   //         GET PANIGATION LOCATION
   // ============================================
   @HttpCode(200)
+  @Roles(Role.ADMIN, Role.USER)
   @Get("get-panigation-location/:pageIndex/:pageSize")
   getPanigationLocation(
     @Param("pageIndex") pageIndex: number,
@@ -52,6 +62,7 @@ export class LocationController {
   //                POST LOCATION
   // ============================================
   @HttpCode(201)
+  @Roles(Role.ADMIN)
   @Post("post-location")
   postLocation(@Body() body: CreateLocationDto, @Res() res: Response) {
     return this.locationService.postLocation(body, res)
@@ -62,6 +73,7 @@ export class LocationController {
   // ============================================
   @ApiConsumes('multipart/form-data')
   @HttpCode(201)
+  @Roles(Role.ADMIN)
   @Post("upload-img-location/:locationID")
   @UseInterceptors(
     FilesInterceptor("hinhAnh", 10,                // Tham số 1: key FE gửi lên, và số lượng tối đa hình gửi lên 
@@ -86,6 +98,7 @@ export class LocationController {
   //                PUT LOCATION
   // ============================================
   @HttpCode(201)
+  @Roles(Role.ADMIN)
   @Put("put-location/:locationID")
   putLocation(
     @Param("locationID") locationID: number,
@@ -100,6 +113,7 @@ export class LocationController {
   //               DELETE LOCATION
   // ============================================
   @HttpCode(200)
+  @Roles(Role.ADMIN)
   @Delete('delete-location/:locationID')
   deleteLocation(@Param("locationID") locationID: number, @Res() res:Response){
     return this.locationService.deleteLocation(locationID, res);
