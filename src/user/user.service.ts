@@ -8,6 +8,7 @@ import * as fs from 'fs';
 
 import { UserUpdateDto } from './dto/update-user.dto';
 import { FileUploadDto } from './dto/upload.dto';
+import { Response } from 'express';
 
 
 @Injectable()
