@@ -10,7 +10,9 @@ export class CicdService {
 
   updateCodeServer(res: Response) {
     try{
-      exec("docker exec -it cons-be bash && git pull && docker restart cons-be")
+      exec("docker exec -it cons-be bash && git pull")
+      exec("exit")
+      exec("docker restart cons-be")
       successCode(res, "",200, "Thành công !")
     }
     catch(exception){
