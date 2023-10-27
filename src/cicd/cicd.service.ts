@@ -13,7 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("docker exec -it cons-be bash && git pull && exit && docker restart cons-be", (error, stdout, stderr) => {
+      await exec("/usr/src/app/docker exec -it cons-be bash && git pull && exit && docker restart cons-be", (error, stdout, stderr) => {
         if (error) {
           console.error("🚀 ~ Error:", error);
           errorCode(res, "Lỗi BE !");
