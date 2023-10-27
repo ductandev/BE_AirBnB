@@ -23,7 +23,7 @@ export class CicdService {
         }
       });
     } catch (exception) {
-      console.error("🚀 ~ Exception:", exception);
+      console.log("🚀 ~ file: cicd.service.ts:26 ~ CicdService ~ updateCodeServer ~ exception:", exception)
       errorCode(res, "Lỗi BE !");
     }
   }
