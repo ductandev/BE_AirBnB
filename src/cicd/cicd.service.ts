@@ -13,7 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("/usr/src/app/docker exec -it cons-be bash && git pull && exit && docker restart cons-be", (error, stdout, stderr) => {
+      await exec("docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be", (error, stdout, stderr) => {
         if (error) {
           console.error("🚀 ~ Error:", error);
           errorCode(res, "Lỗi BE !");
@@ -23,7 +23,7 @@ export class CicdService {
         }
       });
     } catch (exception) {
-      console.log("🚀 ~ file: cicd.service.ts:26 ~ CicdService ~ updateCodeServer ~ exception:", exception)
+      console.error("🚀 ~ Exception:", exception);
       errorCode(res, "Lỗi BE !");
     }
   }
