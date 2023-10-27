@@ -28,19 +28,4 @@ export class CicdService {
     }
   }
 
-
-  // ============================================
-  //         TEST CI/CD AUTO UPDATE CODE
-  // ============================================
-  async testCodeServer(res: Response) {
-    try{
-      console.log("Success TEST code !!!")
-      successCode(res, "",200, "Thành công !")
-    }
-    catch(exception){
-      console.log("🚀 ~ file: cicd.service.ts:40 ~ CicdService ~ testCodeServer ~ exception:", exception)
-      errorCode(res, "Lỗi BE !")
-    }
-  }
-
 }
