@@ -11,19 +11,20 @@ export class CicdService {
   // ============================================
   //           AUTO UPDATE CODE SERVER
   // ============================================
-  updateCodeServer(res: Response) {
-    try{
-      exec("docker exec -it cons-be bash")
-      exec("git pull")
-      exec("exit")
-      exec("docker restart cons-be")
-      
-      console.log("Success update code !!!")
-      successCode(res, "",200, "Thành công !")
-    }
-    catch(exception){
-      console.log("🚀 ~ file: cicd.service.ts:25 ~ CicdService ~ updateCodeServer ~ exception:", exception)
-      errorCode(res, "Lỗi BE !")
+  async updateCodeServer(res: Response) {
+    try {
+      await exec("docker exec -it cons-be bash && git pull && exit && docker restart cons-be", (error, stdout, stderr) => {
+        if (error) {
+          console.error("🚀 ~ Error:", error);
+          errorCode(res, "Lỗi BE !");
+        } else {
+          console.log("Success update code !!!");
+          successCode(res, "", 200, "Thành công !");
+        }
+      });
+    } catch (exception) {
+      console.error("🚀 ~ Exception:", exception);
+      errorCode(res, "Lỗi BE !");
     }
   }
 
@@ -31,7 +32,7 @@ export class CicdService {
   // ============================================
   //         TEST CI/CD AUTO UPDATE CODE
   // ============================================
-  testCodeServer(res: Response) {
+  async testCodeServer(res: Response) {
     try{
       console.log("Success TEST code !!!")
       successCode(res, "",200, "Thành công !")
