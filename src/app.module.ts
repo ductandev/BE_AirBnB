@@ -11,6 +11,7 @@ import { CommentModule } from './comment/comment.module';
 import { BookRoomModule } from './book-room/book-room.module';
 import { RoomModule } from './room/room.module';
 import { LocationModule } from './location/location.module';
+import { CicdModule } from './cicd/cicd.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { LocationModule } from './location/location.module';
     CommentModule,
     BookRoomModule,
     RoomModule,
-    LocationModule],
+    LocationModule,
+    CicdModule],
   controllers: [AppController],
   providers: [AppService, JwtStrategy],
 })

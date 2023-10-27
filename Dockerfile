@@ -23,13 +23,6 @@ CMD ["yarn","start"]
 # CMD ["node","start"]
 
 
-
-
-
-
-# docker build . -t img-html              || img-html: tên image tự đặt trong docker
-
-# docker run -d -p 3030:80 --name cons-html img-html
-
-
+# docker exec -it cons-be bash && git pull && docker restart cons-be
 # docker exec -it "tên_Container" bash => CICD => git pull
+#run: curl http://ductandev.io.vn/update-code
