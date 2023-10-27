@@ -14,4 +14,13 @@ export class CicdController {
   updateCodeServer(@Res() res:Response){
     return this.cicdService.updateCodeServer(res)
   }
+
+  // ============================================
+  //         TEST CI/CD AUTO UPDATE CODE
+  // ============================================
+  @HttpCode(200)
+  @Get("test")
+  testCodeServer(@Res() res:Response){
+    return this.cicdService.testCodeServer(res)
+  }
 }
