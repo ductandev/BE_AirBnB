@@ -12,8 +12,13 @@ COPY prisma ./prisma/
 
 RUN yarn prisma generate
 
+# Cài đặt Docker trong container
 RUN apt-get update
 RUN apt-get install -y docker.io
+
+# Thêm Docker vào biến môi trường PATH
+ENV PATH="/usr/local/bin:${PATH}"
+
 
 # Cấu hình cho FE sẹt đường dẫn
 # COPY nginx.conf /etc/nginx/nginx.conf
