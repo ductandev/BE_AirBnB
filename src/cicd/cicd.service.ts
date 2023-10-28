@@ -13,8 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      const command = 'docker ps'; // Ví dụ: lệnh 'docker ps' để liệt kê các container
-      await exec(command, (error, stdout, stderr) => {
+      await exec("docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be", (error, stdout, stderr) => {
         if (error) {
           console.error("🚀 ~ Error:", error);
           errorCode(res, "Lỗi BE !");

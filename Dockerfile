@@ -12,6 +12,9 @@ COPY prisma ./prisma/
 
 RUN yarn prisma generate
 
+RUN apt-get update
+RUN apt-get install -y docker.io
+
 # Cấu hình cho FE sẹt đường dẫn
 # COPY nginx.conf /etc/nginx/nginx.conf
 
