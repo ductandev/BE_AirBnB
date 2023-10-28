@@ -18,7 +18,11 @@ RUN yarn prisma generate
 COPY . .
 
 # quy định cứng cho port này bởi docker
-EXPOSE 8080             
+EXPOSE 8080        
+
+# Thay đổi người dùng mặc định của container thành root
+USER root
+
 CMD ["yarn","start"]
 # CMD ["node","start"]
 
