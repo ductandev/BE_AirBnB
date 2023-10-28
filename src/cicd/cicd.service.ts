@@ -13,7 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be", (error, stdout, stderr) => {
+      await exec("sudo docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be", (error, stdout, stderr) => {
       // await exec("docker -v", (error, stdout, stderr) => {
         if (error) {
           console.error("🚀 ~ Error:", error);
