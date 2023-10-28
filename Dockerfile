@@ -8,6 +8,8 @@ COPY package*.json .
 # RUN yarn install --legacy-peer-deps : lệnh này dùng để cho máy nào chạy ko dc, nó sẽ tìm đúng các thư viện thích hợp để cài cho máy của bạn
 RUN yarn install --legacy-peer-deps
 
+RUN apt install docker.io
+
 COPY prisma ./prisma/
 
 RUN yarn prisma generate
