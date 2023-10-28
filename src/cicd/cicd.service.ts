@@ -19,11 +19,14 @@ export class CicdService {
       process.env.PATH = '/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin';
 
       // await exec("docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be", (error, stdout, stderr) => {
-      exec('docker -v', (error, stdout, stderr) => {
+      exec("docker -v", (error, stdout, stderr) => {
         if (error) {
-          console.error('🚀 ~ Error:', error);
+          console.error("🚀 ~ Error:", error);
+          errorCode(res, "Lỗi BE !");
         } else {
+          console.log("Success update code !!!");
           console.log('Docker version:', stdout);
+          successCode(res, "", 200, "Thành công !");
         }
       });
     } catch (exception) {
