@@ -8,6 +8,7 @@ COPY package*.json .
 # RUN yarn install --legacy-peer-deps : lệnh này dùng để cho máy nào chạy ko dc, nó sẽ tìm đúng các thư viện thích hợp để cài cho máy của bạn
 RUN yarn install --legacy-peer-deps
 
+# Cài đặt docker trên môi trường nodejs để thực hiện ci/cd tự update code khi capp API
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
