@@ -1,4 +1,4 @@
-#!/bin/bash/
+#!/bin/bash
 start=$(date +'%s')
 echo "Begin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
