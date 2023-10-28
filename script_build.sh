@@ -4,6 +4,12 @@ echo "Begin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 echo "Begin install systems"
 
+
+
+
+sudo chmod 777 script.sh
+
+
 sudo docker rm -f cons-be
 sleep 2
 

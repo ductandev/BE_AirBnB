@@ -5,6 +5,7 @@ echo "Begin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo "Begin install systems"
 
 
+
 # docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be
 sudo docker exec -it cons-be bash
 sleep 1
