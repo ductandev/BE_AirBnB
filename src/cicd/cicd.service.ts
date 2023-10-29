@@ -14,8 +14,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      const scriptPath = path.join(__dirname, 'script.sh');
-      await exec(`sh ${scriptPath}`, (error: { message: any; }, stdout: any, stderr: any) => {
+      await exec('sh ./script.sh', (error: { message: any; }, stdout: any, stderr: any) => {
         if (error) {
           console.error(`error: ${error.message}`);
           return;
