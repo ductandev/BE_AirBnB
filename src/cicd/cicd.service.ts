@@ -13,7 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("/root/BE_AirBnB/script.sh", (error, stdout, stderr) => {
+      await exec("./../../script.sh", (error, stdout, stderr) => {
         if (error) {
           console.error("🚀 ~ Error:", error);
           errorCode(res, "Lỗi BE !");
