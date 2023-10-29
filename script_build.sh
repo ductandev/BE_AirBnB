@@ -16,7 +16,7 @@ sleep 2
 sudo docker build . -t img-be
 sleep 2
 
-sudo docker run -d -p 8080:8080 -e DATABASE_URL=mysql://root:1234@143.198.84.117:3306/bt_airbnb?schema=public --name cons-be img-be
+sudo docker run -d -p 8080:8080 -e DATABASE_URL=mysql://root:1234@206.189.84.20:3306/bt_airbnb?schema=public --name cons-be img-be
 sleep 2
 
 
