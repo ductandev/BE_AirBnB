@@ -13,8 +13,17 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be")
-      successCode(res, "", 200, "Thành công !");
+      await exec("docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be", (error, stdout, stderr) => {
+        if (error) {
+          console.error("🚀 ~ Error:", error);
+          errorCode(res, "Lỗi BE !");
+          return;
+        } else {
+          console.log("Success update code !!!");
+          successCode(res, "", 200, "Thành công !");
+        }
+      });
+
     } catch (exception) {
       console.error("🚀 ~ Exception:", exception);
       errorCode(res, "Lỗi BE !");
