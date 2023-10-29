@@ -2,8 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { exec } from 'child_process';
 import { Response } from 'express';
 import { errorCode, successCode } from 'src/Config/response';
-import * as path from 'path';
-
 
 @Injectable()
 export class CicdService {
@@ -14,7 +12,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      const scriptPath = path.join(__dirname, '../../cicd/script.sh');
+      const scriptPath = '/root/BE_AirBnB/src/cicd/script.sh'; // Đường dẫn đầy đủ đến script.sh
       await exec(`sh ${scriptPath}`, (error: { message: any; }, stdout: any, stderr: any) => {
         if (error) {
           console.error(`error: ${error.message}`);
