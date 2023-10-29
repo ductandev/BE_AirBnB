@@ -27,8 +27,8 @@ export class CicdService {
         }
       
         console.log(`stdout:\n${stdout}`);
-        successCode(res, "", 200, "Thành công !");
       });
+      successCode(res, "", 200, "Thành công !");
 
     } catch (exception) {
       console.error("🚀 ~ Exception:", exception);
