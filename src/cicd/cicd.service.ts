@@ -15,7 +15,7 @@ export class CicdService {
     try {
       const { exec } = require('child_process');
 
-      await execFile('/root/BE_AirBnB/script.sh', (error, stdout, stderr) => {
+      await execFile('./script.sh', (error, stdout, stderr) => {
         if (error) {
           console.error(`error: ${error.message}`);
           return;
