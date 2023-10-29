@@ -13,17 +13,22 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("ls", (error, stdout, stderr) => {
+      const { exec } = require('child_process');
+
+      await exec('ls -lh', (error, stdout, stderr) => {
         if (error) {
-          console.error("🚀 ~ Error:", error);
-          errorCode(res, "Lỗi BE !");
+          console.error(`error: ${error.message}`);
           return;
-        } else {
-          console.log(exec("pwd"));
-          console.log("Success update code !!!");
-          successCode(res, "", 200, "Thành công !");
         }
+      
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+      
+        console.log(`stdout:\n${stdout}`);
       });
+        successCode(res, "", 200, "Thành công !");
 
     } catch (exception) {
       console.error("🚀 ~ Exception:", exception);
