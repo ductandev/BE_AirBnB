@@ -13,7 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec("pwd", (error, stdout, stderr) => {
+      await exec("ls", (error, stdout, stderr) => {
         if (error) {
           console.error("🚀 ~ Error:", error);
           errorCode(res, "Lỗi BE !");
