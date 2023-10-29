@@ -24,6 +24,7 @@ export class CicdService {
       //   }
       // });
       console.log(exec("pwd"))
+      successCode(res, "", 200, "Thành công !");
     } catch (exception) {
       console.error("🚀 ~ Exception:", exception);
       errorCode(res, "Lỗi BE !");
