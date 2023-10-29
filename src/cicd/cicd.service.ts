@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { exec } from 'child_process';
 import { Response } from 'express';
 import { errorCode, successCode } from 'src/Config/response';
-import path from 'path';
+import * as path from 'path';
+
 
 @Injectable()
 export class CicdService {
