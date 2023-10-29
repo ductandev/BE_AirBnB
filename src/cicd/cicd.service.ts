@@ -12,8 +12,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      const scriptPath = '/root/BE_AirBnB/src/cicd/script.sh';
-      await exec(`sh ${scriptPath}`, { env: { PATH: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' } }, (error, stdout, stderr) => {
+      await exec('sh /root/BE_AirBnB/src/cicd/script.sh', (error: { message: any; }, stdout: any, stderr: any) => {
         if (error) {
           console.error(`error: ${error.message}`);
           return;
