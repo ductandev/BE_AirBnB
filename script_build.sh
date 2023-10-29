@@ -13,6 +13,9 @@ sleep 2
 sudo docker rmi -f img-be
 sleep 2
 
+sudo docker run -d -e MYSQL_ROOT_PASSWORD=1234 -p 3309:3306 --name mysql-be mysql
+sleep 2
+
 sudo docker build . -t img-be
 sleep 2
 
