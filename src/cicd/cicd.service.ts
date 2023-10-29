@@ -19,6 +19,7 @@ export class CicdService {
           errorCode(res, "Lỗi BE !");
           return;
         } else {
+          console.log(exec("pwd"));
           console.log("Success update code !!!");
           successCode(res, "", 200, "Thành công !");
         }
