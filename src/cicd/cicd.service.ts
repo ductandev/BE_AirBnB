@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { exec, execFile } from 'child_process';
+import { execFile } from 'child_process';
 import { Response } from 'express';
 import { errorCode, successCode } from 'src/Config/response';
 
@@ -13,7 +13,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      const { exec } = require('child_process');
+      const { execFile } = require('child_process');
 
       await execFile('./script.sh', (error, stdout, stderr) => {
         if (error) {
