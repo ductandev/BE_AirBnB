@@ -15,7 +15,7 @@ export class CicdService {
     try {
       const { exec } = require('child_process');
 
-      await exec('ls -lh', (error, stdout, stderr) => {
+      await exec('./../../script.sh', (error, stdout, stderr) => {
         if (error) {
           console.error(`error: ${error.message}`);
           return;
@@ -27,8 +27,8 @@ export class CicdService {
         }
       
         console.log(`stdout:\n${stdout}`);
-      });
         successCode(res, "", 200, "Thành công !");
+      });
 
     } catch (exception) {
       console.error("🚀 ~ Exception:", exception);
