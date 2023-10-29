@@ -7,7 +7,7 @@ echo "Begin install systems"
 
 sudo chmod 777 script.sh
 
-sudo docker rm -f mysql_be
+sudo docker rm -f mysql-be
 sleep 2
 
 sudo docker rm -f cons-be
