@@ -13,7 +13,7 @@ export class CicdController {
   // ============================================
   @HttpCode(200)
   @Get("/update-code-server")
-  updateCodeServer(@Res() res:Response){
+  updateCodeServer(@Res() res: Response){
     return this.cicdService.updateCodeServer(res)
   }
 }

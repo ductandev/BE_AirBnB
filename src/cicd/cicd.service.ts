@@ -12,6 +12,7 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
+      console.log("testtttttttttttttttttt")
       const { exec } = require('child_process');
       var yourscript = exec('sh script.sh',
               (error, stdout, stderr) => {
