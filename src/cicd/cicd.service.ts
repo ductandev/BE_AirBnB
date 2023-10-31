@@ -14,6 +14,7 @@ export class CicdService {
     try {
       console.log("testtttttttttttttttttt")
       const { exec } = require('child_process');
+      console.log(exec('ls -lh'))
       var yourscript = exec('sh /root/BE_AirBnB/src/cicd/script.sh',
               (error, stdout, stderr) => {
                   console.log(stdout);
