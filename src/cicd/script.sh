@@ -5,7 +5,7 @@ echo "Begin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo "Begin install systems"
 
 
-sudo docker exec -it cons-be bash -c 'git pull && exit' && docker restart cons-be
+docker exec cons-be bash -c 'git pull && exit' && docker restart cons-be
 
 
 echo "bat dau thoi gian:$start"

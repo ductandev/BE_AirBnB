@@ -12,19 +12,15 @@ export class CicdService {
   // ============================================
   async updateCodeServer(res: Response) {
     try {
-      await exec('sh /root/BE_AirBnB/src/cicd/script.sh', (error: { message: any; }, stdout: any, stderr: any) => {
-        if (error) {
-          console.error(`error: ${error.message}`);
-          return;
-        }
-      
-        if (stderr) {
-          console.error(`stderr: ${stderr}`);
-          return;
-        }
-      
-        console.log(`stdout:\n${stdout}`);
-      });
+      const { exec } = require('child_process');
+      var yourscript = exec('sh script.sh',
+              (error, stdout, stderr) => {
+                  console.log(stdout);
+                  console.log(stderr);
+                  if (error !== null) {
+                      console.log(`exec error: ${error}`);
+                  }
+              });
       successCode(res, "", 200, "Thành công !");
 
     } catch (exception) {
