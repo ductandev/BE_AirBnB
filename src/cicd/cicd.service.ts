@@ -14,7 +14,7 @@ export class CicdService {
     try {
       console.log("testtttttttttttttttttt")
       const { exec } = require('child_process');
-      var yourscript = exec('ls',
+      var yourscript = exec('sh script.sh',
               (error, stdout, stderr) => {
                   console.log(stdout);
                   console.log(stderr);
