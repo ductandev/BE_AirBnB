@@ -18,6 +18,4 @@ jobs:
 
       - name: Update code on server
         run: |
-          sshpass -p your_ssh_password ssh root@206.189.84.20 "docker exec cons-be bash -c 'git pull && exit' && docker restart cons-be"
-        env:
-          your_ssh_password: ${{ secrets.YOUR_SSH_PASSWORD }}
+          sshpass -p 1234 ssh root@206.189.84.20 "docker exec cons-be bash -c 'git pull && exit' && docker restart cons-be"
