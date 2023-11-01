@@ -13,9 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2  # Sử dụng action để kiểm tra mã nguồn từ repository
-
       - name: Update code on server
         run: |
           sshpass -p your_ssh_password ssh user@your-server-ip "docker exec cons-be bash -c 'git pull && exit' && docker restart cons-be"
