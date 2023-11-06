@@ -1,0 +1,20 @@
+name: Run Terminal Command
+
+on:
+  push:
+    branches:
+      - main # Thay thế bằng tên nhánh bạn muốn theo dõi
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check Out Repository
+      uses: actions/checkout@v2
+
+    - name: Run Terminal Command
+      run: |
+        # Đây là nơi để bạn đặt lệnh terminal bạn muốn chạy
+        # Ví dụ: npm install && npm test
+        echo "Hello, World"
