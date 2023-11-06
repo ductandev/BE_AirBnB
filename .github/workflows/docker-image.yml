@@ -1,4 +1,4 @@
-name: Run Remote Command  #test
+name:  Docker Image CI  #test
 
 on:
   push:
