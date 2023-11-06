@@ -1,20 +1,24 @@
-name: Run Terminal Command
+name: Run Remote Command
 
 on:
   push:
     branches:
-      - main # Thay thế bằng tên nhánh bạn muốn theo dõi
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check Out Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Run Terminal Command
-      run: |
-        # Đây là nơi để bạn đặt lệnh terminal bạn muốn chạy
-        # Ví dụ: npm install && npm test
-        echo "Hello, World"
+      - name: SSH Into Remote Server
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.REMOTE_SERVER_HOST }}
+          username: ${{ secrets.REMOTE_SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Chạy lệnh terminal trên máy chủ từ xa
+            echo "Hello, World"
