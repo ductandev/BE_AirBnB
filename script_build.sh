@@ -19,7 +19,7 @@ sleep 2
 sudo apt  install docker.io -y
 sleep 2
 
-sudo docker run -d -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 --name mysql-be mysql
+sudo docker run -d -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 --name mysql-be mysql
 sleep 2
 
 sudo docker build . -t img-be
