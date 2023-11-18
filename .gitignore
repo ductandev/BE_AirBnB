@@ -2,6 +2,9 @@
 /dist
 /node_modules
 .env
+script_build.sh
+script_rebuild.sh
+script.sh
 
 # Logs
 # logs
