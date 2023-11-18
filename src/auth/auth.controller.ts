@@ -29,4 +29,5 @@ export class AuthController {
   signUp(@Body() body: UserSignUpType, @Res() res: Response) {
     return this.authService.signUp(body, res);
   }
+  // TEST
 }
