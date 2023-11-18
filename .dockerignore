@@ -1,2 +1,4 @@
 node_modules
 .env
+script_build.sh
+script_rebuild.sh
