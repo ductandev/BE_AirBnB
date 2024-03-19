@@ -17,7 +17,7 @@ export class UserService {
 
   model = new PrismaClient();
 
-  
+
   // ============================================
   //   LẤY THÔNG TIN CHI TIẾT TẤT CẢ NGƯỜI DÙNG
   // ============================================
@@ -30,7 +30,7 @@ export class UserService {
       });
 
       if (data.length === 0) {
-        return failCode(res, data, 400, "Chưa có người dùng nào được thêm vào dữ liệu!")
+        return successCode(res, data, 200, "Chưa có người dùng nào được thêm vào dữ liệu!")
       }
 
       successCode(res, data, 200, "Thành công !")
@@ -40,7 +40,7 @@ export class UserService {
       errorCode(res, "Lỗi BE")
     }
   }
-  
+
 
   // ============================================
   // LẤY THÔNG TIN CHI TIẾT NGƯỜI DÙNG BY USER_ID
@@ -65,16 +65,16 @@ export class UserService {
       errorCode(res, "Lỗi BE")
     }
   }
-  
+
 
   // ============================================
   //    LẤY DANH SÁCH NGƯỜI DÙNG PHÂN TRANG
   // ============================================
   async getListUserPanigation(pageIndex: number, pageSize: number, res: Response) {
-    try{
+    try {
       // 1, 2, 3
       let index = (pageIndex - 1) * pageSize;  // =>0, 3, 6, 9
-      if (index < 0){
+      if (index < 0) {
         return failCode(res, '', 400, "pageIndex phải lớn hơn 0 !")
       }
 
@@ -86,13 +86,13 @@ export class UserService {
         }
       });
 
-      if (data.length === 0 ){
-        return failCode(res, data, 400, "Không có dữ liệu !")
+      if (data.length === 0) {
+        return successCode(res, data, 200, "Không có dữ liệu !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch (exception){
+    catch (exception) {
       console.log("🚀 ~ file: user.service.ts:85 ~ UserService ~ getListUserPanigation ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -102,10 +102,10 @@ export class UserService {
   // ============================================
   //        TÌM TÊN NGƯỜI DÙNG THEO TÊN
   // ============================================ 
-  async searchUserByName(userName: string, res: Response){
-    try{
+  async searchUserByName(userName: string, res: Response) {
+    try {
       let data = await this.model.nguoiDung.findMany({
-        where:{
+        where: {
           ho_ten: {
             contains: userName      // LIKE '%userName%'
           },
@@ -113,13 +113,13 @@ export class UserService {
         }
       });
 
-      if (data.length === 0){
-        return failCode(res, data, 400, "Không có dữ liệu kết quả tìm kiếm !")
+      if (data.length === 0) {
+        return successCode(res, data, 200, "Không có dữ liệu kết quả tìm kiếm !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch (exception){
+    catch (exception) {
       console.log("🚀 ~ file: user.service.ts:111 ~ UserService ~ searchUserByName ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -173,9 +173,9 @@ export class UserService {
   // ============================================
   //             CẬP NHẬT NGƯỜI DÙNG 
   // ============================================  
-  async updateUserById(userId: string, body: UserUpdateDto, res: Response){
-    try{ 
-      let {ho_ten, email, mat_khau, so_dien_thoai, ngay_sinh, gioi_tinh, tuoi} = body;
+  async updateUserById(userId: string, body: UserUpdateDto, res: Response) {
+    try {
+      let { ho_ten, email, mat_khau, so_dien_thoai, ngay_sinh, gioi_tinh, tuoi } = body;
 
       let checkEmail = await this.model.nguoiDung.findFirst({
         where: {
@@ -184,7 +184,7 @@ export class UserService {
         }
       });
 
-      if (checkEmail === null){
+      if (checkEmail === null) {
         return failCode(res, checkEmail, 400, "Email hoặc người dùng ID không đúng !")
       }
 
@@ -205,7 +205,7 @@ export class UserService {
 
       successCode(res, newData, 200, "Cập nhật thông tin thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: user.service.ts:166 ~ UserService ~ updateUserById ~ exception:", exception)
       errorCode(res, "Lỗi BE");
     }
@@ -215,16 +215,16 @@ export class UserService {
   // ============================================
   //                XÓA NGƯỜI DÙNG 
   // ============================================
-  async deleteUserById(userId: string, res: Response){
-    try{
+  async deleteUserById(userId: string, res: Response) {
+    try {
       let data = await this.model.nguoiDung.findFirst({
-        where:{
+        where: {
           nguoi_dung_id: +userId,
           isDelete: false
         },
       });
 
-      if (data === null){
+      if (data === null) {
         return failCode(res, data, 400, "Người dùng không tồn tại !")
       }
 
@@ -232,16 +232,16 @@ export class UserService {
         where: {
           nguoi_dung_id: +userId,
         },
-        data:{
+        data: {
           isDelete: true
         }
       });
 
       successCode(res, data, 200, "Đã xóa người dùng thành công !")
     }
-    catch (exception){
+    catch (exception) {
       console.log("🚀 ~ file: user.service.ts:120 ~ UserService ~ deleteUserById ~ exception:", exception)
-      errorCode(res,"Lỗi BE")
+      errorCode(res, "Lỗi BE")
     }
   }
 

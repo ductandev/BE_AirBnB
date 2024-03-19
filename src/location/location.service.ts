@@ -26,7 +26,7 @@ export class LocationService {
       });
 
       if (data.length === 0) {
-        return failCode(res, data, 400, "Không có dữ liệu nào được tìm thấy !")
+        return successCode(res, data, 200, "Không có dữ liệu nào được tìm thấy !")
       }
 
       successCode(res, data, 200, "Thành công !")
@@ -81,7 +81,7 @@ export class LocationService {
       });
 
       if (data.length === 0) {
-        return failCode(res, data, 400, "Không có dữ liệu nào được tìm thấy !")
+        return successCode(res, data, 200, "Không có dữ liệu nào được tìm thấy !")
       }
 
       successCode(res, data, 200, "Thành công !")
@@ -216,10 +216,10 @@ export class LocationService {
   // ============================================
   //               DELETE LOCATION
   // ============================================
-  async deleteLocation(locationID:number, res:Response){
+  async deleteLocation(locationID: number, res: Response) {
     try {
       let data = await this.model.viTri.findFirst({
-        where:{
+        where: {
           vi_tri_id: +locationID,
           isDelete: false
         }
@@ -230,20 +230,20 @@ export class LocationService {
       }
 
       await this.model.viTri.update({
-        where:{
+        where: {
           vi_tri_id: +locationID,
           isDelete: false
         },
-        data:{
+        data: {
           isDelete: true
         }
       });
 
       successCode(res, data, 200, "Xóa vị trí thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: location.service.ts:245 ~ LocationService ~ deleteLocation ~ exception:", exception)
-      errorCode(res,"Lỗi BE !")
+      errorCode(res, "Lỗi BE !")
     }
   }
 

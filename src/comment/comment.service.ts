@@ -8,7 +8,7 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 
 @Injectable()
 export class CommentService {
-  constructor() {}
+  constructor() { }
 
   model = new PrismaClient();
 
@@ -16,21 +16,21 @@ export class CommentService {
   // ============================================
   //            GET ALL BÌNH LUẬN
   // ============================================ 
-  async getAllComment(res: Response){
-    try{
+  async getAllComment(res: Response) {
+    try {
       let data = await this.model.binhLuan.findMany({
-        where:{
+        where: {
           isDelete: false,
         }
       });
 
-      if(data.length === 0){
-        return failCode(res, data, 400, "Chưa có dữ liệu bình luận nào được tìm thấy !")
+      if (data.length === 0) {
+        return successCode(res, data, 200, "Chưa có dữ liệu bình luận nào được tìm thấy !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: comment.service.ts:33 ~ CommentService ~ getAllComment ~ exception:", exception)
       errorCode(res, "Lỗi BE !")
     }
@@ -40,10 +40,10 @@ export class CommentService {
   // ============================================
   //         GET BÌNH LUẬN BY USER ID
   // ============================================ 
-  async getCommentByUserId(userID:number, res: Response){
-    try{
+  async getCommentByUserId(userID: number, res: Response) {
+    try {
       let data = await this.model.nguoiDung.findFirst({
-        where:{
+        where: {
           nguoi_dung_id: +userID,
           isDelete: false,
         },
@@ -52,17 +52,17 @@ export class CommentService {
         }
       });
 
-      if (data === null){
+      if (data === null) {
         return failCode(res, '', 400, "Người dùng id không tồn tại")
       }
 
-      if (data.BinhLuan.length === 0){
-        return failCode(res, '', 400, "Người dùng này chưa bình luận phòng nào !")
+      if (data.BinhLuan.length === 0) {
+        return successCode(res, data, 200, "Người dùng này chưa bình luận phòng nào !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: comment.service.ts:61 ~ CommentService ~ getCommentByUserId ~ exception:", exception)
       errorCode(res, "Lỗi BE !")
     }
@@ -72,10 +72,10 @@ export class CommentService {
   // ============================================
   //         GET COMMENT BY ROOM ID
   // ============================================ 
-  async getCommentByRoomId(roomID:number, res: Response){
-    try{
+  async getCommentByRoomId(roomID: number, res: Response) {
+    try {
       let data = await this.model.phong.findFirst({
-        where:{
+        where: {
           phong_id: +roomID,
           isDelete: false
         },
@@ -84,17 +84,17 @@ export class CommentService {
         }
       });
 
-      if (data === null){
+      if (data === null) {
         return failCode(res, '', 400, "Phòng id không tồn tại")
       }
 
-      if (data.BinhLuan.length === 0){
-        return failCode(res, '', 400, "Chưa có ai bình luận phòng này !")
+      if (data.BinhLuan.length === 0) {
+        return successCode(res, data, 200, "Chưa có ai bình luận phòng này !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: comment.service.ts:61 ~ CommentService ~ getCommentByUserId ~ exception:", exception)
       errorCode(res, "Lỗi BE !")
     }
@@ -104,29 +104,29 @@ export class CommentService {
   // ============================================
   //               POST COMMENT 
   // ============================================
-  async postComment(body: CreateCommentDto, res: Response){
-    try{
-      let {phong_id, nguoi_dung_id, ngay_binh_luan, noi_dung, sao_binh_luan} = body;
+  async postComment(body: CreateCommentDto, res: Response) {
+    try {
+      let { phong_id, nguoi_dung_id, ngay_binh_luan, noi_dung, sao_binh_luan } = body;
 
       let checkUserID = await this.model.nguoiDung.findFirst({
-        where:{
+        where: {
           nguoi_dung_id,
           isDelete: false
         }
       });
 
       let checkPhongID = await this.model.phong.findFirst({
-        where:{
+        where: {
           phong_id,
           isDelete: false
         }
       });
 
-      if (checkUserID === null){
+      if (checkUserID === null) {
         return failCode(res, '', 400, "Người dùng không tồn tại !")
       }
 
-      if (checkPhongID === null){
+      if (checkPhongID === null) {
         return failCode(res, '', 400, "Phòng ID không tồn tại !")
       }
 
@@ -136,7 +136,7 @@ export class CommentService {
 
       successCode(res, body, 201, "Thêm bình luận thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: comment.service.ts:140 ~ CommentService ~ postComment ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -146,12 +146,12 @@ export class CommentService {
   // ============================================
   //               PUT COMMENT 
   // ============================================
-  async putComment(commentID: number, body: CreateCommentDto, res: Response){
-    try{
-      let {phong_id, nguoi_dung_id, ngay_binh_luan, noi_dung, sao_binh_luan} = body;
+  async putComment(commentID: number, body: CreateCommentDto, res: Response) {
+    try {
+      let { phong_id, nguoi_dung_id, ngay_binh_luan, noi_dung, sao_binh_luan } = body;
 
       let checkCmtID = await this.model.binhLuan.findFirst({
-        where:{
+        where: {
           binh_luan_id: +commentID,
           phong_id,
           nguoi_dung_id,
@@ -160,7 +160,7 @@ export class CommentService {
       });
 
 
-      if (checkCmtID === null){
+      if (checkCmtID === null) {
         return failCode(res, '', 400, "Dữ liệu không tồn tại hoặc chưa nhập đúng !")
       }
 
@@ -181,7 +181,7 @@ export class CommentService {
 
       successCode(res, body, 200, "Cập nhật bình luận thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: comment.service.ts:185 ~ CommentService ~ putComment ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -191,18 +191,18 @@ export class CommentService {
   // ============================================
   //                DELETE COMMENT 
   // ============================================
-  async deleteComment(commentID: number, res: Response){
-    try{
+  async deleteComment(commentID: number, res: Response) {
+    try {
 
       let checkCmtID = await this.model.binhLuan.findFirst({
-        where:{
+        where: {
           binh_luan_id: +commentID,
           isDelete: false
         }
       });
 
 
-      if (checkCmtID === null){
+      if (checkCmtID === null) {
         return failCode(res, '', 400, "Comment ID không tồn tại !")
       }
 
@@ -217,13 +217,11 @@ export class CommentService {
 
       successCode(res, checkCmtID, 200, "Xóa bình luận thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: comment.service.ts:221 ~ CommentService ~ deleteComment ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
   }
-
-
 
 
 

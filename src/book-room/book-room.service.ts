@@ -6,7 +6,7 @@ import { CreateBookRoomDto } from './dto/create-book-room.dto';
 
 @Injectable()
 export class BookRoomService {
-  constructor() {}
+  constructor() { }
 
   model = new PrismaClient();
 
@@ -14,21 +14,21 @@ export class BookRoomService {
   // ============================================
   //          GET ALL INFO BOOK ROOM
   // ============================================
-  async getAllInfoBookRoom(res: Response){
+  async getAllInfoBookRoom(res: Response) {
     try {
       let data = await this.model.datPhong.findMany({
         where: {
-          isDelete: false
+          isDelete: true
         }
       });
 
-      if (data.length === 0){
-        return failCode(res, data, 400, "Không có dữ liệu đặt phòng trống !")
+      if (data.length === 0) {
+        return successCode(res, data, 200, "Dữ liệu đặt phòng trống !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch (exception){
+    catch (exception) {
       console.log("🚀 ~ file: book-room.service.ts:31 ~ BookRoomService ~ getAllInfoBookRoom ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -38,10 +38,10 @@ export class BookRoomService {
   // ============================================
   //    GET ALL INFO BOOK ROOM BY USER ID
   // ============================================ 
-  async getAllInfoBookRoomByUserId(userID:number, res: Response){
-    try{
+  async getAllInfoBookRoomByUserId(userID: number, res: Response) {
+    try {
       let data = await this.model.nguoiDung.findFirst({
-        where:{
+        where: {
           nguoi_dung_id: +userID,
           isDelete: false,
         },
@@ -50,17 +50,17 @@ export class BookRoomService {
         }
       });
 
-      if (data === null){
+      if (data === null) {
         return failCode(res, '', 400, "Người dùng id không tồn tại")
       }
 
-      if (data.DatPhong.length === 0){
-        return failCode(res, '', 400, "Người dùng này chưa đặt phòng nào !")
+      if (data.DatPhong.length === 0) {
+        return successCode(res, data, 200, "Người dùng này chưa đặt phòng nào !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: book-room.service.ts:63 ~ BookRoomService ~ getAllInfoBookRoomByUserId ~ exception:", exception)
       errorCode(res, "Lỗi BE !")
     }
@@ -70,7 +70,7 @@ export class BookRoomService {
   // ============================================
   //     GET ALL INFO BOOK ROOM BY ROOM ID
   // ============================================
-  async getAllInfoBookRoomByRoomId(roomID:number, res:Response){
+  async getAllInfoBookRoomByRoomId(roomID: number, res: Response) {
     try {
       let data = await this.model.phong.findFirst({
         where: {
@@ -82,17 +82,17 @@ export class BookRoomService {
         }
       });
 
-      if (data === null){
+      if (data === null) {
         return failCode(res, '', 400, "ID phòng không hợp hệ !")
       }
 
-      if (data.DatPhong.length === 0){
-        return failCode(res, '', 400, "Phòng này không có dữ liệu do chưa có ai đặt !")
+      if (data.DatPhong.length === 0) {
+        return successCode(res, data, 200, "Phòng này không có dữ liệu do chưa có ai đặt !")
       }
 
       successCode(res, data, 200, "Thành công !")
     }
-    catch (exception){
+    catch (exception) {
       console.log("🚀 ~ file: book-room.service.ts:95 ~ BookRoomService ~ getAllInfoBookRoomByRoomId ~ exception:", exception)
       errorCode(res, "Lỗi BE !")
     }
@@ -102,29 +102,29 @@ export class BookRoomService {
   // ============================================
   //               POST BOOK ROOM
   // ============================================
-  async postBookRoom(body: CreateBookRoomDto, res: Response){
-    try{
-      let {phong_id, nguoi_dung_id, ngay_den, ngay_di, so_luong_khach} = body;
+  async postBookRoom(body: CreateBookRoomDto, res: Response) {
+    try {
+      let { phong_id, nguoi_dung_id, ngay_den, ngay_di, so_luong_khach } = body;
 
       let checkUserID = await this.model.nguoiDung.findFirst({
-        where:{
+        where: {
           nguoi_dung_id,
           isDelete: false
         }
       });
 
       let checkPhongID = await this.model.phong.findFirst({
-        where:{
+        where: {
           phong_id,
           isDelete: false
         }
       });
 
-      if (checkUserID === null){
+      if (checkUserID === null) {
         return failCode(res, '', 400, "Người dùng ID không tồn tại !")
       }
 
-      if (checkPhongID === null){
+      if (checkPhongID === null) {
         return failCode(res, '', 400, "Phòng ID không tồn tại !")
       }
 
@@ -134,7 +134,7 @@ export class BookRoomService {
 
       successCode(res, body, 201, "Đặt phòng thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: book-room.service.ts:138 ~ BookRoomService ~ postBookRoom ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -144,12 +144,12 @@ export class BookRoomService {
   // ============================================
   //               PUT BOOK ROOM
   // ============================================
-  async putBookRoomById(bookRoomID: number, body: CreateBookRoomDto, res: Response){
-    try{
-      let {phong_id, nguoi_dung_id, ngay_den, ngay_di, so_luong_khach} = body;
+  async putBookRoomById(bookRoomID: number, body: CreateBookRoomDto, res: Response) {
+    try {
+      let { phong_id, nguoi_dung_id, ngay_den, ngay_di, so_luong_khach } = body;
 
       let checkData = await this.model.datPhong.findFirst({
-        where:{
+        where: {
           dat_phong_id: +bookRoomID,
           phong_id,
           nguoi_dung_id,
@@ -158,7 +158,7 @@ export class BookRoomService {
       });
 
 
-      if (checkData === null){
+      if (checkData === null) {
         return failCode(res, '', 400, "Dữ liệu không tồn tại hoặc chưa nhập đúng !")
       }
 
@@ -177,9 +177,9 @@ export class BookRoomService {
         }
       });
 
-      successCode(res, body, 200, "Sử thông tin đặt phòng thành công !")
+      successCode(res, body, 200, "Sửa thông tin đặt phòng thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: book-room.service.ts:183 ~ BookRoomService ~ putBookRoomById ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }
@@ -189,18 +189,18 @@ export class BookRoomService {
   // ============================================
   //              DELETE BOOK ROOM 
   // ============================================
-  async deleteBookRoomById(bookRoomID: number, res: Response){
-    try{
+  async deleteBookRoomById(bookRoomID: number, res: Response) {
+    try {
 
       let checkBookRoom = await this.model.datPhong.findFirst({
-        where:{
+        where: {
           dat_phong_id: +bookRoomID,
           isDelete: false
         }
       });
 
 
-      if (checkBookRoom === null){
+      if (checkBookRoom === null) {
         return failCode(res, '', 400, "Đặt phòng ID không tồn tại hoặc đã bị xóa trước đó !")
       }
 
@@ -215,7 +215,7 @@ export class BookRoomService {
 
       successCode(res, checkBookRoom, 200, "Xóa đặt phòng thành công !")
     }
-    catch(exception){
+    catch (exception) {
       console.log("🚀 ~ file: book-room.service.ts:219 ~ BookRoomService ~ deleteBookRoomById ~ exception:", exception)
       errorCode(res, "Lỗi BE")
     }

@@ -25,7 +25,7 @@ export class RoomService {
       });
 
       if (data.length === 0) {
-        return failCode(res, data, 400, "Chưa có dữ liệu phòng nào được tìm thấy !")
+        return successCode(res, data, 200, "Chưa có dữ liệu phòng nào được tìm thấy !")
       }
 
       successCode(res, data, 200, "Thành công !")
@@ -83,7 +83,7 @@ export class RoomService {
       }
 
       if (data.Phong.length === 0) {
-        return failCode(res, '', 400, "Vị trí này chưa thêm phòng nào !")
+        return successCode(res, data, 200, "Vị trí này chưa thêm phòng nào !")
       }
 
       successCode(res, data, 200, "Thành công !")
@@ -114,7 +114,7 @@ export class RoomService {
       });
 
       if (data.length === 0) {
-        return failCode(res, data, 400, "Không có dữ liệu nào được tìm thấy !")
+        return successCode(res, data, 200, "Không có dữ liệu nào được tìm thấy !")
       }
 
       successCode(res, data, 200, "Thành công !")
