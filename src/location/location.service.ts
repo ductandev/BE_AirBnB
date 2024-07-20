@@ -109,7 +109,7 @@ export class LocationService {
       });
 
       if (checkLocation !== null) {
-        return failCode(res, '', 400, "Vị trí và tỉnh thành này đã tồn tại !")
+        return failCode(res, '', 409, "Vị trí và tỉnh thành này đã tồn tại !")
       }
 
       let newData = await this.model.viTri.create({

@@ -108,7 +108,7 @@ export class RoomController {
   // ============================================
   //                PUT ROOM
   // ============================================
-  @HttpCode(201)
+  @HttpCode(200)
   @Roles(Role.ADMIN)
   @Put("put-room/:roomID")
   putRoom(@Param("roomID") roomID: number, @Body() body: CreateRoomDto, @Res() res: Response) {
